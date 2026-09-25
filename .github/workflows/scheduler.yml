@@ -1,9 +1,9 @@
-name: Daily News Curator & Emailer
+name: Daily News PDF & Emailer
 
 on:
   schedule:
-    - cron: '30 19 * * *' # Runs at 1:00 AM IST daily (19:30 UTC)
-  workflow_dispatch: # Allows you to manually trigger it instantly anytime
+    - cron: '30 19 * * *' # Runs at 1:00 AM IST daily
+  workflow_dispatch:
 
 jobs:
   run-curator:
@@ -22,5 +22,9 @@ jobs:
           pip install feedparser reportlab
 
       - name: Run Curator Script
+        env:
+          SENDER_EMAIL: ${{ secrets.rohith29806@gmail.com }}
+          EMAIL_APP_PASSWORD: ${{ secrets.reum nlkg owrg xsjs }}
+          RECEIVER_EMAIL: ${{ secrets.rohith29806@gmail.com }}
         run: |
           python curator.py
